@@ -1,9 +1,16 @@
 // first server
 
 const http = require('http');
+const fs = require('fs') // to read files
 
 const server = http.createServer((req , res)=>{
-  res.end('hello in first app ....')
+  fs.readFile('./index.html', null, (error, data)=>{
+    if(error){
+      res.end('file not exist')
+    }else{
+      res.end(data)
+    }
+  })
 })
 
 server.listen(3000 , '127.0.0.1' , ()=>{
